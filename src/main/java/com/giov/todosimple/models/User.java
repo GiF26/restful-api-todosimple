@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = User.TABLE_NAME) // ANOTATION RESPONSAVEL POR CRIAR TABELA NO BANCO E DEFINIR O NOME DELA
@@ -34,7 +36,8 @@ public class User {
     @Size(groups = CreateUser.class,min = 8, max = 60)
     private String password;
 
-//    List<Task> tasks = new ArrayList<>()
+    @OneToMany(mappedBy = "user") //ANNOTATION QUE DEFINE QUE UM USUARIO PODE TER MUITAS TASKS (CRIACAO DE MODELO RELACIONAL NO BANCO)
+    private List<Task> tasks = new ArrayList<>();
 
     public Long getId() {
         return id;
