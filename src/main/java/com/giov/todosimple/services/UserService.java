@@ -36,13 +36,12 @@ public class UserService {
         return this.userRepository.save(newObj);
     }
 
-    public User delete(Long id){
+    public void delete(Long id){
         findById(id);
         try {
             this.userRepository.deleteById(id);
         }catch (Exception e){
             throw new RuntimeException("Error deleting user because already relational entity's! \nId: " + id);
         }
-        return this.userRepository.findById(id).get();
     }
 }
